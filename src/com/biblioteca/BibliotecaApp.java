@@ -95,8 +95,19 @@ public class BibliotecaApp {
         String autor = scanner.nextLine();
         System.out.print("ISBN: ");
         String isbn = scanner.nextLine();
-        System.out.print("Año de publicación: ");
-        int año = Integer.parseInt(scanner.nextLine());
+        //Validar que el año esté entre 1450(invencion de la imprenta) y el año actual
+        //Pedir de nuevo el año nuevamente
+        int año; //Creo la variable año antes porque se no me da error
+        do{
+                System.out.print("Año de publicación: ");
+                año = Integer.parseInt(scanner.nextLine());
+                //Mostrar mensaje de eror si es invalido
+                if((año < 1450) || (año > 2026))
+                {
+                    System.out.println("Error: el año debe estar entre 1450 y 2026");
+                }
+            } while((año < 1450) || (año > 2026));
+        
         
         Libro libro = new Libro(titulo, autor, isbn, año);
         bibliotecaServicio.agregarLibro(libro);
